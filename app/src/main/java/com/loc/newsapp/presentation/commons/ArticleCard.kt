@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -39,12 +40,13 @@ fun ArticleCard(
 ){
     val context = LocalContext.current
     Row (
-        modifier = modifier.clickable { onClick }
+        modifier = modifier.clickable { onClick() }
     ){
         AsyncImage(
             modifier = Modifier
                 .size(ArticleCardSize)
                 .clip(MaterialTheme.shapes.medium),
+            contentScale = ContentScale.Crop,
             model = ImageRequest.Builder(context).data(article.urlToImage).build(),
             contentDescription = null
         )
